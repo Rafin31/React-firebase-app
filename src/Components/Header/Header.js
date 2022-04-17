@@ -48,7 +48,7 @@ const Header = () => {
                     </Navbar.Toggle>
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mx-auto navLinks text-center">
-                            <Nav.Link href="#home">Home</Nav.Link>
+                            <Nav.Link href="/" active >Home</Nav.Link>
                             <Nav.Link href="#services">Services</Nav.Link>
                             <Nav.Link href="#pricing">Price</Nav.Link>
                             <Nav.Link href="#about">About</Nav.Link>
@@ -69,7 +69,7 @@ const Header = () => {
 
                             >
                                 <Card >
-                                    <Card.Body>
+                                    <Card.Body >
                                         <NavDropdown.Item href="#action/3.1">
                                             <FontAwesomeIcon icon={faUser} />  Profile
                                         </NavDropdown.Item>
