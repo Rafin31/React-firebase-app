@@ -4,6 +4,7 @@ import AOS from "aos";
 import { Route, Routes } from "react-router-dom"
 import Banner from "./Components/Banner/Banner"
 import Header from "./Components/Header/Header"
+import Service from "./Components/Services/Service";
 
 function App() {
 
@@ -15,7 +16,12 @@ function App() {
 		<>
 			<Header />
 			<Routes>
-				<Route path="/" element={<Banner />} />
+				<Route path="/" element={
+					<>
+						<Banner />
+						<Service />
+					</>
+				} />
 			</Routes>
 		</>
 
