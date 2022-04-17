@@ -1,8 +1,16 @@
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { faBarsStaggered, faX, faAngleDown, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import {
+    faBarsStaggered,
+    faX,
+    faAngleDown,
+    faAngleRight,
+    faUser,
+    faGear,
+    faSignOut
+} from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Card, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { faFontAwesome } from '@fortawesome/free-solid-svg-icons';
 import logo from '../Assets/logo.PNG'
 import './Header.css'
@@ -10,6 +18,13 @@ import './Header.css'
 const Header = () => {
 
     const [isDrop, setIsDrop] = useState(false)
+    const [show, setShow] = useState(false);
+    const showDropdown = (e) => {
+        setShow(!show);
+    }
+    const hideDropdown = e => {
+        setShow(false);
+    }
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="transparent">
@@ -17,11 +32,11 @@ const Header = () => {
 
                     <Navbar.Brand className='navBarLogo'>
                         <Nav.Link href="/">
-                            <img className='navbarLogo' src={logo} />
+                            <img className='navbarLogo w-75 ' src={logo} />
                         </Nav.Link>
 
                     </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav">
+                    <Navbar.Toggle className='fw-bolder' aria-controls="responsive-navbar-nav">
                         {isDrop ? <FontAwesomeIcon icon={faX} onClick={() => {
                             setIsDrop(!isDrop)
                         }} /> :
@@ -47,12 +62,28 @@ const Header = () => {
                                     </span>
                                 }
                                 id="collasible-nav-dropdown"
+                                show={show}
+                                onMouseEnter={showDropdown}
+                                onMouseUp={() => { setShow(!show) }}
+                                onMouseLeave={hideDropdown}
+
                             >
-                                <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Settings</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">Log out</NavDropdown.Item>
+                                <Card >
+                                    <Card.Body>
+                                        <NavDropdown.Item href="#action/3.1">
+                                            <FontAwesomeIcon icon={faUser} />  Profile
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item href="#action/3.2">
+                                            <FontAwesomeIcon icon={faGear} /> Settings
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="#action/3.4">
+                                            <FontAwesomeIcon icon={faSignOut} /> Log out
+                                        </NavDropdown.Item>
+                                    </Card.Body>
+                                </Card>
                             </NavDropdown>
+
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

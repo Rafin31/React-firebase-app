@@ -20,6 +20,13 @@
     color: #fe4f54 !important;
 }
 
+.dropdown-menu {
+
+    border: 0px !important;
+    padding: 10px 15px;
+
+}
+
 .dropdown-toggle::after {
     display: none !important;
 }
