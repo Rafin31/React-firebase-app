@@ -1,0 +1,21 @@
+.checkout {
+    height: 60vh;
+    padding-top: 100px;
+}
+
+.checkOutButton {
+    border: 1px solid #ff4e54;
+    text-decoration: none !important;
+    background: #ff4e54;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.checkOutButton:hover {
+    background-color: rgba(255, 78, 84, 0.5);
+    border: 1px solid rgba(255, 78, 84, 0.5);
+    color: white;
+
+}

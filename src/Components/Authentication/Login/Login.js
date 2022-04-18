@@ -2,8 +2,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelopeSquare, faKey } from '@fortawesome/free-solid-svg-icons';
 import gmail from '../../Assets/gmail.png'
 import './Login.css'
-import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react';
 import auth from '../../../firebase.init';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
@@ -14,9 +14,12 @@ import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
 
     const [toggle, setToggle] = useState(false)
+    const toastId = useRef(null);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     const [
         signInWithEmailAndPassword,
@@ -39,14 +42,19 @@ const Login = () => {
 
 
     if (error || signInerror || Googleerror) {
-        toast('Something Went Wrong')
+        toast.error('Something Went Wrong', {
+            toastId: 'Something'
+        })
+
     }
     else if (loading || signInloading || Googleloading) {
-        toast('Please Wait...')
+        toast.info('Please Wait...', {
+            toastId: 'Please'
+        })
     }
     else if (user || signInuser || Googleuser) {
         console.log(user);
-        navigate("/");
+        navigate(from, { replace: true });
 
     }
 
@@ -151,20 +159,19 @@ const Login = () => {
 
                                             <div className="col-12">
 
-                                                {
-                                                    toggle ? <div className="gmailLogin">
-                                                        <p>Or</p>
-                                                        <button className='Gmail' onClick={gmailLogin}>
 
-                                                            <span> <img className='w-25' src={gmail} alt="" srcset="" /> Use Gmail </span>
+                                                <div className="gmailLogin">
+                                                    <p>Or</p>
+                                                    <button className='Gmail' onClick={gmailLogin}>
 
-                                                        </button>
-                                                    </div>
-                                                        :
-                                                        " "
-                                                }
+                                                        <span> <img className='w-25' src={gmail} alt="" srcset="" /> Use Gmail </span>
+
+                                                    </button>
+                                                </div>
+
+
                                             </div>
-                                            <ToastContainer />
+                                            <ToastContainer autoClose={1000} />
                                         </div>
 
 

@@ -2,10 +2,16 @@ import './Service.css'
 import React, { useEffect, useState } from 'react';
 import { faBookmark, faShieldHalved, faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router-dom';
 
 const Service = () => {
 
     const [data, setData] = useState([])
+    const navigate = useNavigate()
+
+    const redirect = () => {
+        navigate('/checkout')
+    }
 
     useEffect(() => {
         fetch('Data/services.json')
@@ -68,7 +74,7 @@ const Service = () => {
 
                                                     </div>
                                                     <div className="col-lg-6 col-md-12 col-12">
-                                                        <button className="servicesButton">
+                                                        <button className="servicesButton" onClick={redirect}>
                                                             Purchase  <FontAwesomeIcon icon={faArrowRightLong} />
                                                         </button>
                                                     </div>

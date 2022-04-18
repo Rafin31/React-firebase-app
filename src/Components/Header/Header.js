@@ -34,12 +34,16 @@ const Header = () => {
     const logout = (e) => {
         e.preventDefault()
         signOut(auth)
-        toast("Signing out")
+        toast.info('Signing Out...', {
+            toastId: 'Signing'
+        })
     }
 
 
     if (loading) {
-        toast("Please wait")
+        toast.info('Please Wait...', {
+            toastId: 'Please'
+        })
     }
 
     if (user) {
@@ -71,10 +75,10 @@ const Header = () => {
                     </Navbar.Toggle>
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mx-auto navLinks text-center">
-                            <Nav.Link href="/" active >Home</Nav.Link>
-                            <Nav.Link href="#services">Services</Nav.Link>
-                            <Nav.Link href="#pricing">Price</Nav.Link>
-                            <Nav.Link href="#about">About</Nav.Link>
+                            <Nav.Link as={Link} to="/" active >Home</Nav.Link>
+                            <Nav.Link href="/#services">Services</Nav.Link>
+                            <Nav.Link as={Link} to="/blog">Blog</Nav.Link>
+                            <Nav.Link as={Link} to="/about">About</Nav.Link>
 
                         </Nav>
 
