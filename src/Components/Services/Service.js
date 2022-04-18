@@ -32,7 +32,13 @@ const Service = () => {
                                             data-aos-anchor-placement="center-bottom">
                                             <div className="card-body">
                                                 <div className="cardBodyWrapper">
+
                                                     <p className='service__title  text-center'>{Title}</p>
+
+                                                    <div className="servicePrice mb-5">
+                                                        <p>Only on <span className='price'>${price}</span></p>
+                                                    </div>
+
                                                     <p className='service__description text-center'>
                                                         {
                                                             description.length > 150 ?
@@ -52,13 +58,10 @@ const Service = () => {
 
                                                         </ul>
                                                     </div>
-                                                    <div className="servicePrice">
-                                                        <p>Only on <span className='price'>${price}</span></p>
-                                                    </div>
+
                                                 </div>
 
                                                 <div className="row gy-3 serviceButtonsWrapper">
-                                                    <hr />
 
                                                     <div className="col-lg-6 col-md-12 col-12">
                                                         <button className="servicesDetailsButton">Details</button>

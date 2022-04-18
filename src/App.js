@@ -7,6 +7,7 @@ import Header from "./Components/Header/Header"
 import Service from "./Components/Services/Service";
 import Footer from "./Components/Footer/Footer";
 import Review from "./Components/Review/Review";
+import Login from "./Components/Authentication/Login/Login";
 
 function App() {
 
@@ -25,6 +26,8 @@ function App() {
 						<Review />
 					</>
 				} />
+
+				<Route path="/login" element={<Login />} />
 			</Routes>
 			<Footer />
 		</>

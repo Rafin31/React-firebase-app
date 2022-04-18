@@ -1,30 +1,53 @@
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
+import auth from '../../firebase.init';
 import {
     faBarsStaggered,
     faX,
     faAngleDown,
-    faAngleRight,
     faUser,
     faGear,
     faSignOut
 } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
 import { Card, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { faFontAwesome } from '@fortawesome/free-solid-svg-icons';
 import logo from '../Assets/logo.PNG'
 import './Header.css'
+import { toast, ToastContainer } from 'react-toastify';
 
 const Header = () => {
 
     const [isDrop, setIsDrop] = useState(false)
     const [show, setShow] = useState(false);
+    const [user, loading, error] = useAuthState(auth);
+
+
     const showDropdown = (e) => {
         setShow(!show);
     }
     const hideDropdown = e => {
         setShow(false);
     }
+
+    const logout = (e) => {
+        e.preventDefault()
+        signOut(auth)
+        toast("Signing out")
+    }
+
+
+    if (loading) {
+        toast("Please wait")
+    }
+
+    if (user) {
+        const displayName = user.email.split("@")
+
+    }
+
+
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="transparent">
@@ -32,7 +55,7 @@ const Header = () => {
 
                     <Navbar.Brand className='navBarLogo'>
                         <Nav.Link href="/">
-                            <img className='navbarLogo w-75 ' src={logo} />
+                            <img className='navbarLogo w-75' src={logo} alt="logo" />
                         </Nav.Link>
 
                     </Navbar.Brand>
@@ -54,41 +77,58 @@ const Header = () => {
                             <Nav.Link href="#about">About</Nav.Link>
 
                         </Nav>
-                        <Nav className='text-center'>
-                            <NavDropdown
-                                title={
-                                    <span>
-                                        User  <FontAwesomeIcon icon={faAngleDown} />
-                                    </span>
-                                }
-                                id="collasible-nav-dropdown"
-                                show={show}
-                                onMouseEnter={showDropdown}
-                                onMouseUp={() => { setShow(!show) }}
-                                onMouseLeave={hideDropdown}
 
-                            >
-                                <Card >
-                                    <Card.Body >
-                                        <NavDropdown.Item href="#action/3.1">
-                                            <FontAwesomeIcon icon={faUser} />  Profile
-                                        </NavDropdown.Item>
-                                        <NavDropdown.Item href="#action/3.2">
-                                            <FontAwesomeIcon icon={faGear} /> Settings
-                                        </NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="#action/3.4">
-                                            <FontAwesomeIcon icon={faSignOut} /> Log out
-                                        </NavDropdown.Item>
-                                    </Card.Body>
-                                </Card>
-                            </NavDropdown>
+                        {
+                            user ?
+                                <>
+                                    <Nav className='text-center'>
+                                        <NavDropdown
+                                            title={
+                                                < span >
+                                                    {user.email.split("@")[0]} < FontAwesomeIcon icon={faAngleDown} />
+                                                </span>
+                                            }
+                                            id="collasible-nav-dropdown"
+                                            show={show}
+                                            onMouseEnter={showDropdown}
+                                            onMouseUp={() => { setShow(!show) }}
+                                            onMouseLeave={hideDropdown}
 
-                        </Nav>
+                                        >
+                                            <Card >
+                                                <Card.Body >
+                                                    <NavDropdown.Item href="">
+                                                        <FontAwesomeIcon icon={faUser} />  Profile
+                                                    </NavDropdown.Item>
+                                                    <NavDropdown.Item href="">
+                                                        <FontAwesomeIcon icon={faGear} /> Settings
+                                                    </NavDropdown.Item>
+                                                    <NavDropdown.Divider />
+                                                    <NavDropdown.Item href="" onClick={logout}>
+                                                        <FontAwesomeIcon icon={faSignOut} /> Log out
+                                                    </NavDropdown.Item>
+                                                </Card.Body>
+                                            </Card>
+                                        </NavDropdown>
+
+                                    </Nav>
+                                </>
+                                :
+                                <>
+                                    <Nav className='text-center'>
+                                        <Link className='signinButton' to={'/login'}>Sing in</Link>
+                                    </Nav>
+                                </>
+                        }
+
+
+
+
                     </Navbar.Collapse>
                 </Container>
-            </Navbar>
-        </div>
+            </Navbar >
+            <ToastContainer autoClose={1000} />
+        </div >
     );
 };
 
