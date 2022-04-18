@@ -29,7 +29,7 @@ const Service = () => {
 
                                     <div className="col-lg-4 col-md-6 col-12">
                                         <div className={`card rounded-lg serviceCard service_${id}`} data-aos="fade-up"
-                                            data-aos-duration="3000">
+                                            data-aos-anchor-placement="center-bottom">
                                             <div className="card-body">
                                                 <div className="cardBodyWrapper">
                                                     <p className='service__title  text-center'>{Title}</p>
