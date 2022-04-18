@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom"
 import Banner from "./Components/Banner/Banner"
 import Header from "./Components/Header/Header"
 import Service from "./Components/Services/Service";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
 					</>
 				} />
 			</Routes>
+			<Footer />
 		</>
 
 	)

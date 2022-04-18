@@ -56,14 +56,15 @@ const Service = () => {
                                                         <p>Only on <span className='price'>${price}</span></p>
                                                     </div>
                                                 </div>
-                                                <hr />
-                                                <div className="row gy-3 serviceButtonsWrapper">
 
-                                                    <div className="col-lg-6 col-12">
+                                                <div className="row gy-3 serviceButtonsWrapper">
+                                                    <hr />
+
+                                                    <div className="col-lg-6 col-md-12 col-12">
                                                         <button className="servicesDetailsButton">Details</button>
 
                                                     </div>
-                                                    <div className="col-lg-6 col-12">
+                                                    <div className="col-lg-6 col-md-12 col-12">
                                                         <button className="servicesButton">
                                                             Purchase Now <FontAwesomeIcon icon={faArrowRightLong} />
                                                         </button>

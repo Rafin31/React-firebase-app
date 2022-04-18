@@ -1,0 +1,44 @@
+.footerWrapper {
+    padding: 100px 0px 0px 0px;
+    height: auto;
+    width: 100% !important;
+    background-color: #f8f7fc;
+    border-radius: 50%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.footerSectionTitle {
+    color: #1a0a39;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0 !important;
+}
+
+li a,
+li {
+    color: #a2a1a9;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+li .svg-inline--fa {
+    color: #fa5156;
+}
+
+li a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+@media only screen and (max-width:780px) {
+
+    .footerWrapper {
+        text-align: center;
+    }
+
+}
