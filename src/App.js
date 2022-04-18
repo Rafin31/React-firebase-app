@@ -6,6 +6,7 @@ import Banner from "./Components/Banner/Banner"
 import Header from "./Components/Header/Header"
 import Service from "./Components/Services/Service";
 import Footer from "./Components/Footer/Footer";
+import Review from "./Components/Review/Review";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
 					<>
 						<Banner />
 						<Service />
+						<Review />
 					</>
 				} />
 			</Routes>

@@ -9,7 +9,8 @@ const Footer = () => {
     return (
         <div className='container-fluid footerWrapper'>
 
-            <div className="container">
+            <div className="container" data-aos="fade-up"
+                data-aos-anchor-placement="center-bottom">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-lg-3 col-md-6 col-12">
                         <p className="footerSectionTitle Logo">

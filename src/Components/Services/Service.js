@@ -66,7 +66,7 @@ const Service = () => {
                                                     </div>
                                                     <div className="col-lg-6 col-md-12 col-12">
                                                         <button className="servicesButton">
-                                                            Purchase Now <FontAwesomeIcon icon={faArrowRightLong} />
+                                                            Purchase  <FontAwesomeIcon icon={faArrowRightLong} />
                                                         </button>
                                                     </div>
 

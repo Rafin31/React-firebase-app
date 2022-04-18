@@ -1,0 +1,44 @@
+.slick-prev:before,
+.slick-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: red;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.smallHeading {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #e8595b;
+    margin: 0;
+}
+
+.largeHeading {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #180c32;
+}
+
+.reviewWrapper {
+    height: auto;
+    padding: 0px 50px;
+}
+
+/* .slick-slide>div {
+    display: grid;
+    place-items: center;
+    width: 80%;
+    margin-top: 50px;
+    margin: auto;
+    height: 500px;
+    padding: 0px;
+    background: transparent;
+} */
+
+.reviewWrapper .card {
+    height: 200px;
+    width: 100%;
+}
