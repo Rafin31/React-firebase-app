@@ -13,6 +13,7 @@ import PurchaseDone from "./Components/PurchaseDone/PurchaseDone";
 import RequireAuth from "./Components/Authentication/Login/RequireAuth/RequireAuth";
 import Blog from "./Components/Blog/Blog";
 import About from "./Components/About/About";
+import Four04 from "./Components/404page/Four04";
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
 
 				<Route path="/blog" element={<Blog />} />
 				<Route path="/about" element={<About />} />
+				<Route path="*" element={<Four04 />} />
 
 			</Routes>
 			<Footer />

@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import auth from '../../../firebase.init';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useSignInWithGoogle, useSendEmailVerification, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
 
     const [toggle, setToggle] = useState(false)
+    const [userError, setuserError] = useState(null)
     const toastId = useRef(null);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -40,12 +41,21 @@ const Login = () => {
         Googleloading,
         Googleerror] = useSignInWithGoogle(auth);
 
+    const [sendPasswordResetEmail, sending, ResetPassworderror] = useSendPasswordResetEmail(
+        auth
+    );
+
 
     if (error || signInerror || Googleerror) {
-        toast.error('Something Went Wrong', {
+        toast.error('Wrong Credentials', {
             toastId: 'Something'
         })
 
+    }
+    else if (sending) {
+        toast.info('Sending Email...', {
+            toastId: 'Email'
+        })
     }
     else if (loading || signInloading || Googleloading) {
         toast.info('Please Wait...', {
@@ -54,6 +64,7 @@ const Login = () => {
     }
     else if (user || signInuser || Googleuser) {
         console.log(user);
+        setuserError(" ")
         navigate(from, { replace: true });
 
     }
@@ -79,6 +90,21 @@ const Login = () => {
         signInWithGoogle()
 
     }
+
+    const resetpassword = async (e) => {
+        e.preventDefault()
+        if (!email) {
+            setuserError("Put Email Address")
+        } else {
+            await sendPasswordResetEmail(email);
+            toast.info('Sending Email...', {
+                toastId: 'Email'
+            })
+        }
+
+
+    }
+
 
 
 
@@ -141,6 +167,7 @@ const Login = () => {
                                                 }
 
                                             />
+                                            <p className="my-3 h6 text-center text-danger text-center mx-auto">{userError}</p>
                                         </div>
 
 
@@ -148,10 +175,12 @@ const Login = () => {
                                             <div className="col-12">
                                                 <p> {
                                                     toggle ? <>
+
                                                         Already Signed in? Sign in here < Link onClick={toggleSignIn} to={""}>Sing in here!</Link>
                                                     </>
                                                         :
                                                         <>
+                                                            <p className="my-5">Don't remember your password? < Link onClick={resetpassword} to={""}>Reset Password now</Link> </p>
                                                             First Time in Dota 2 Coaching? Sign up here < Link onClick={toggleSignIn} to={""}>Sing up here!</Link>
                                                         </>
                                                 } </p>
