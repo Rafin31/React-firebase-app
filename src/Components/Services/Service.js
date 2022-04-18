@@ -1,6 +1,6 @@
 import './Service.css'
 import React, { useEffect, useState } from 'react';
-import { faBookmark, faGamepad } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faShieldHalved, faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Service = () => {
@@ -18,7 +18,7 @@ const Service = () => {
         <div className="container-fluid service__section">
             <div className='services__great__wrapper' id='services'>
                 <div className="container">
-                    <div className="row gy-5">
+                    <div className="row justify-content-center gy-5">
                         <div className="col-12 text-center">
                             <p className="smallHeading"> <FontAwesomeIcon icon={faBookmark} /> Why we are the best for you?</p>
                             <p className="largeHeading">We provide best services</p>
@@ -27,27 +27,52 @@ const Service = () => {
                             data.map(({ id, Title, description, price, Features }) => {
                                 return (
 
-                                    <div className="col-lg-4 col-md-2 col-12">
+                                    <div className="col-lg-4 col-md-6 col-12">
                                         <div className={`card rounded-lg serviceCard service_${id}`} data-aos="fade-up"
                                             data-aos-duration="3000">
                                             <div className="card-body">
                                                 <div className="cardBodyWrapper">
                                                     <p className='service__title  text-center'>{Title}</p>
-                                                    <p className='service__description text-center'>{description}</p>
+                                                    <p className='service__description text-center'>
+                                                        {
+                                                            description.length > 150 ?
+                                                                description.slice(0, 150).concat("...") :
+                                                                description
+                                                        }
+                                                    </p>
 
 
 
 
                                                     <div className="serviceLists">
                                                         <ul>
-                                                            <li> <FontAwesomeIcon icon={faGamepad} /> Maximum Game  :  {Features?.Maximum_game}</li>
-                                                            <li> <FontAwesomeIcon icon={faGamepad} /> Total Hour   : {Features?.Total_hour}</li>
-                                                            <li> <FontAwesomeIcon icon={faGamepad} /> Rank Push :      {Features?.Rank_Push}</li>
+                                                            <li> <FontAwesomeIcon icon={faShieldHalved} /> Maximum Game  :  {Features?.Maximum_game}</li>
+                                                            <li> <FontAwesomeIcon icon={faShieldHalved} /> Total Hour   : {Features?.Total_hour}</li>
+                                                            <li> <FontAwesomeIcon icon={faShieldHalved} /> Rank Push :      {Features?.Rank_Push}</li>
 
                                                         </ul>
                                                     </div>
+                                                    <div className="servicePrice">
+                                                        <p>Only on <span className='price'>${price}</span></p>
+                                                    </div>
                                                 </div>
-                                                <button className="servicesButton">Purchase Now!</button>
+                                                <hr />
+                                                <div className="row gy-3 serviceButtonsWrapper">
+
+                                                    <div className="col-lg-6 col-12">
+                                                        <button className="servicesDetailsButton">Details</button>
+
+                                                    </div>
+                                                    <div className="col-lg-6 col-12">
+                                                        <button className="servicesButton">
+                                                            Purchase Now <FontAwesomeIcon icon={faArrowRightLong} />
+                                                        </button>
+                                                    </div>
+
+
+                                                </div>
+
+
 
 
 
