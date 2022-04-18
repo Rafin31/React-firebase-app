@@ -1,6 +1,16 @@
-# minimal-react18
+# Getting Started with Create React App
 
-This is a minimal template for react@18.
-After react@18 came out regular react-create-app template started giving a warning about "render". This template fixes that and create a very minimal boilerplate for react project.
-To use this template add --template minimal-react18 while creating new app.
-`npx create-react-app my-app --template minimal-react18`
+Live Site link [Dota 2 Coaching](https://verdant-dragon-0e6a2d.netlify.app).
+# Features
+- Responsive design 
+- Modern Technology Used
+- User Authentication
+- user Login system
+- Password reset system
+# Technologies used 
+
+
+- React.js
+- Bootstrap
+- Firebase
+- Recharts
